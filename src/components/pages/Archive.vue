@@ -1,9 +1,12 @@
 <template>
-    <div>
+    <div class="uk-container">
         <h1>{{ $t("navbar.archive") }}</h1>
-        <div class="videos">
-            <VideoThumb v-for="video in videos" :key="video.id" :video="video"/>
-        </div>
+        <vk-grid class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
+                 matched gutter="medium">
+            <div v-for="video in videos" :key="video.id">
+                <VideoThumb :video="video"/>
+            </div>
+        </vk-grid>
     </div>
 </template>
 

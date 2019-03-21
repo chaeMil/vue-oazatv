@@ -4,6 +4,10 @@ export default {
     },
 
     getServer: function () {
-        return "http://localhost:3000/" + this.getApiVersion();
+        return this.getServerRoot() + this.getApiVersion();
+    },
+
+    getServerRoot: function() {
+        return "http://localhost:3000/";
     }
 }
