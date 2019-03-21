@@ -1,5 +1,6 @@
 <template>
-    <h1>ARCHIVE</h1>
+    <h1>{{ $t("navbar.archive") }}</h1>
+
 </template>
 
 <script>

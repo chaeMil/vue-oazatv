@@ -5,7 +5,7 @@
                 <router-link to="/">Oáza.tv</router-link>
             </vk-navbar-logo>
             <vk-navbar-nav>
-                <router-link to="/archive">Archive</router-link>
+                <router-link to="/archive">{{ $t("navbar.archive") }}</router-link>
             </vk-navbar-nav>
             <vk-navbar-item>
 
