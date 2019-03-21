@@ -2,10 +2,10 @@
     <vk-navbar>
         <vk-navbar-nav>
             <vk-navbar-logo>
-                Oáza.tv v3 alpha
+                <router-link to="/">Oáza.tv</router-link>
             </vk-navbar-logo>
             <vk-navbar-nav>
-
+                <router-link to="/archive">Archive</router-link>
             </vk-navbar-nav>
             <vk-navbar-item>
 
@@ -17,9 +17,7 @@
 <script>
     export default {
         name: 'Navbar',
-        components: {
-
-        }
+        components: {}
     }
 </script>
 
