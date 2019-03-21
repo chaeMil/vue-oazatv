@@ -1,18 +1,22 @@
 <template>
-  <div id="app">
-
-  </div>
+    <div id="app">
+        <Navbar></Navbar>
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  components: {
+    import Navbar from './components/Navbar';
 
-  }
-}
+    export default {
+        name: 'app',
+        components: {
+            Navbar
+        }
+    }
 </script>
 
-<style>
+<style lang="less">
+    @import "./assets/style/vuikit";
+
 
 </style>
