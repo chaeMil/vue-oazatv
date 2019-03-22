@@ -7,6 +7,11 @@
                 <VideoThumb :video="video"/>
             </div>
         </vk-grid>
+        <vk-pagination :page.sync="currentPage" :perPage="15" :total="total">
+            <vk-pagination-page-prev></vk-pagination-page-prev>
+            <vk-pagination-pages></vk-pagination-pages>
+            <vk-pagination-page-next></vk-pagination-page-next>
+        </vk-pagination>
     </div>
 </template>
 
@@ -20,7 +25,22 @@
         components: {VideoThumb},
         data: function () {
             return {
-                videos: []
+                videos: [],
+                page: 1,
+                total: 0,
+            }
+        },
+        computed: {
+            currentPage: {
+                get: function() {
+                    return this.page;
+                },
+                set: function(value) {
+                    this.page = value;
+                    this.videos = [];
+                    window.scrollTo(0,0);
+                    this.getArchivePage();
+                }
             }
         },
         methods: {
@@ -28,14 +48,18 @@
                 window.history.length > 1
                     ? this.$router.go(-1)
                     : this.$router.push('/')
+            },
+            getArchivePage() {
+                axios
+                    .get(Api.getServer() + "videos/?page=" + this.page)
+                    .then(response => {
+                        this.videos = response.data.videos;
+                        this.total = response.data.count;
+                    });
             }
         },
         mounted() {
-            axios
-                .get(Api.getServer() + "videos/")
-                .then(response => {
-                    this.videos = response.data;
-                });
+            this.getArchivePage();
         }
     }
 </script>
