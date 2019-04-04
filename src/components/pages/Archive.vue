@@ -50,6 +50,7 @@
                     : this.$router.push('/')
             },
             getArchivePage() {
+                this.videos = [];
                 axios
                     .get(Api.getServer() + "videos/?page=" + this.$route.params.page)
                     .then(response => {
