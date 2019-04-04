@@ -12,20 +12,14 @@
 </template>
 
 <script>
-    import Api from '../utils/api'
+    import VideoUtils from '../utils/video_utils';
 
     export default {
         name: "VideoThumb",
         props: ["video"],
         computed: {
             thumbnail: function () {
-                let url = "";
-                if (this.video.archive_files != null)
-                    this.video.archive_files.forEach((item) => {
-                        if (item.file_type === "image")
-                            url = Api.getServerRoot() + item.file.small.url;
-                    });
-                return url
+                return VideoUtils.getThumbnailFromVideo(this.video);
             }
         }
     }

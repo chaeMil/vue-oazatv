@@ -1,21 +1,65 @@
 <template>
     <div class="uk-container">
+        <div v-if="video != null">
+            <h1>{{video.title}}</h1>
+        </div>
 
+        <video
+                id="player"
+                class="video-js"
+                controls
+                preload="auto"
+                :poster="thumbnail"
+                data-setup='{}'>
+            <source :src="videoFile" type="video/mp4">
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">
+                    supports HTML5 video
+                </a>
+            </p>
+        </video>
     </div>
 </template>
 
 <script>
     import Api from "../../utils/api";
     import axios from 'axios';
+    import videojs from 'video.js';
+
+    import VideoUtils from "../../utils/video_utils";
 
     export default {
         name: 'Archive',
         components: {},
-        props: ["video_hash"],
+        props: ["hash_id"],
         data: function () {
             return {
                 video: null
             }
+        },
+        methods: {
+            onGetVideoSuccess: function () {
+                this.player = videojs('player');
+            }
+        },
+        computed: {
+            thumbnail: function () {
+                return VideoUtils.getThumbnailFromVideo(this.video);
+            },
+            videoFile: function() {
+                return VideoUtils.getVideoFileFromVideo(this.video);
+            }
+        },
+        mounted() {
+            axios
+                .get(Api.getServer() + "videos/" + this.hash_id)
+                .then(response => {
+                    this.video = response.data;
+                    console.log(this.video);
+                    this.onGetVideoSuccess();
+                });
         }
     }
 </script>

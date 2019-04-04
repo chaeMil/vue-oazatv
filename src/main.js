@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Vuikit from 'vuikit'
 import VuikitIcons from '@vuikit/icons'
 import '@vuikit/theme'
+import '../node_modules/video.js/dist/video-js.min.css'
 
 import Home from './components/pages/Home';
 import Archive from './components/pages/Archive';
