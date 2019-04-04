@@ -5,7 +5,7 @@
                 <div class="thumbnail" v-bind:style="'background-image: url(' + thumbnail + ');'"></div>
             </div>
             <vk-card-title>
-                {{ video.title }}
+                {{ title }}
             </vk-card-title>
         </vk-card>
     </router-link>
@@ -20,6 +20,9 @@
         computed: {
             thumbnail: function () {
                 return VideoUtils.getThumbnailFromVideo(this.video);
+            },
+            title: function() {
+                return VideoUtils.getTitleFromVideo(this.video);
             }
         }
     }

@@ -42,13 +42,14 @@
         methods: {
             onGetVideoSuccess: function () {
                 this.player = videojs('player');
+                this.player.play();
             }
         },
         computed: {
             thumbnail: function () {
                 return VideoUtils.getThumbnailFromVideo(this.video);
             },
-            videoFile: function() {
+            videoFile: function () {
                 return VideoUtils.getVideoFileFromVideo(this.video);
             }
         },
@@ -56,9 +57,11 @@
             axios
                 .get(Api.getServer() + "videos/" + this.hash_id)
                 .then(response => {
-                    this.video = response.data;
                     console.log(this.video);
-                    this.onGetVideoSuccess();
+                    this.video = response.data;
+                    this.$nextTick(function () {
+                        this.onGetVideoSuccess();
+                    });
                 });
         }
     }
