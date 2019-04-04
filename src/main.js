@@ -16,11 +16,11 @@ Vue.use(VuikitIcons);
 
 const routes = [
     {path: '/', component: Home},
-    {path: '/archive', component: Archive}
+    {name: 'archive', path: '/archive/:page?', component: Archive, props: true}
 ];
 
 const router = new VueRouter({
-    routes // short for `routes: routes`
+    routes
 });
 
 Vue.config.productionTip = false;

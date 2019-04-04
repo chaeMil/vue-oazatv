@@ -23,23 +23,23 @@
     export default {
         name: 'Archive',
         components: {VideoThumb},
+        props: ["page"],
         data: function () {
             return {
                 videos: [],
-                page: 1,
                 total: 0,
             }
         },
         computed: {
             currentPage: {
-                get: function() {
-                    return this.page;
+                get: function () {
+                    return parseInt(this.page != null ? this.page : 1);
                 },
-                set: function(value) {
-                    this.page = value;
-                    this.videos = [];
-                    window.scrollTo(0,0);
-                    this.getArchivePage();
+                set: function (value) {
+                    this.$router.push({name: 'archive', params: {page: value.toString()}}, () => {
+                        window.scrollTo(0,0);
+                        this.getArchivePage();
+                    });
                 }
             }
         },
@@ -51,7 +51,7 @@
             },
             getArchivePage() {
                 axios
-                    .get(Api.getServer() + "videos/?page=" + this.page)
+                    .get(Api.getServer() + "videos/?page=" + this.$route.params.page)
                     .then(response => {
                         this.videos = response.data.videos;
                         this.total = response.data.count;
