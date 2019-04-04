@@ -1,12 +1,14 @@
 <template>
-    <vk-card class="uk-card-small">
-        <div slot="media-top">
-            <div class="thumbnail" v-bind:style="'background-image: url(' + thumbnail + ');'"></div>
-        </div>
-        <vk-card-title>
-            {{ video.title }}
-        </vk-card-title>
-    </vk-card>
+    <router-link tag="a" :to="{name: 'video', params: {hash_id: video.hash_id}}">
+        <vk-card class="uk-card-small">
+            <div slot="media-top">
+                <div class="thumbnail" v-bind:style="'background-image: url(' + thumbnail + ');'"></div>
+            </div>
+            <vk-card-title>
+                {{ video.title }}
+            </vk-card-title>
+        </vk-card>
+    </router-link>
 </template>
 
 <script>
@@ -29,7 +31,7 @@
     }
 </script>
 
-<style lang="less" >
+<style lang="less">
     .thumbnail {
         width: 100%;
         padding-bottom: 56.25%;

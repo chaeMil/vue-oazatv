@@ -7,6 +7,7 @@ import '@vuikit/theme'
 
 import Home from './components/pages/Home';
 import Archive from './components/pages/Archive';
+import Video from './components/pages/Video';
 
 import i18n from './i18n'
 
@@ -16,7 +17,8 @@ Vue.use(VuikitIcons);
 
 const routes = [
     {path: '/', component: Home},
-    {name: 'archive', path: '/archive/:page?', component: Archive, props: true}
+    {name: 'archive', path: '/archive/:page?', component: Archive, props: true},
+    {name: 'video', path: '/video/watch/:hash_id', component: Video, props: true}
 ];
 
 const router = new VueRouter({
