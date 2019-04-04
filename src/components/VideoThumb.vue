@@ -1,7 +1,7 @@
 <template>
     <vk-card class="uk-card-small">
         <div slot="media-top">
-            <img v-if="thumbnail !== ''" :src="thumbnail" :alt="video.title">
+            <div class="thumbnail" v-bind:style="'background-image: url(' + thumbnail + ');'"></div>
         </div>
         <vk-card-title>
             {{ video.title }}
@@ -29,6 +29,12 @@
     }
 </script>
 
-<style lang="less">
-
+<style lang="less" >
+    .thumbnail {
+        width: 100%;
+        padding-bottom: 56.25%;
+        background-size: cover;
+        background-position: center;
+        background-color: #F5F5F5;
+    }
 </style>
