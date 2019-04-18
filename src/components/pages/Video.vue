@@ -4,13 +4,13 @@
             <h1>{{video.title}}</h1>
         </div>
 
-        <video
-                id="player"
-                class="video-js"
-                controls
-                preload="auto"
-                :poster="thumbnail"
-                data-setup='{}'>
+        <video id="player"
+               ref="player"
+               class="video-js"
+               controls
+               preload="auto"
+               :poster="thumbnail"
+               data-setup='{}'>
             <source :src="videoFile" type="video/mp4">
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a
@@ -63,6 +63,9 @@
                         this.onGetVideoSuccess();
                     });
                 });
+        },
+        beforeDestroy() {
+            this.player.dispose();
         }
     }
 </script>
