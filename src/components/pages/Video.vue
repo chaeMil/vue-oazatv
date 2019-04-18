@@ -6,11 +6,11 @@
 
         <video id="player"
                ref="player"
-               class="video-js"
+               class="video-js vjs-16-9 vjs-big-play-centered"
                controls
                preload="auto"
                :poster="thumbnail"
-               data-setup='{}'>
+               data-setup='{"fluid": true}'>
             <source :src="videoFile" type="video/mp4">
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a
@@ -71,5 +71,8 @@
 </script>
 
 <style lang="less">
-
+    video {
+        max-width: 100%;
+        height: auto;
+    }
 </style>
